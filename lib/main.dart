@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/listViewScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,14 +32,18 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const mainScreen(),
+      home: mainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class mainScreen extends StatelessWidget {
-  const mainScreen({Key? key}) : super(key: key);
+  // const mainScreen({Key? key}) : super(key: key);
+
+
+  final String pesan = 'Haii dari main screen';
+  final String pesan2 = 'Haii dari main screen baris 2';
 
   @override
   Widget build(BuildContext context) {
@@ -77,23 +82,46 @@ class mainScreen extends StatelessWidget {
       // ),
 
       // Penggunaan Container
-      Container(
-        child: Text('Hi', style: TextStyle(fontSize: 40),),
-        // color: Colors.blue,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          shape: BoxShape.circle,
-          boxShadow: [BoxShadow(
-            color: Colors.black,
-            offset: Offset(5, 5),
-            blurRadius: 10
-          )],
-          border: Border.all(color: Colors.green, width: 5)
-        ),
+      Row(
+        children: [
+          Container (
+            child: Text('Hi', style: TextStyle(fontSize: 40),),
+            // color: Colors.blue,
+            padding: EdgeInsets.all(10),
+            margin: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+              boxShadow: [BoxShadow(
+                color: Colors.black,
+                offset: Offset(5, 5),
+                blurRadius: 10
+              )],
+              border: Border.all(color: Colors.green, width: 5)
+            ),
+          ),
+          Container(
+            child: ElevatedButton(
+              onPressed: (){
+                //Ini tanpa Data
+                  // Navigator.push(context, MaterialPageRoute(builder: (context){
+                  //   return listViewScreen();
+                  // }));
+
+                //Ini dengan Data
+                Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) => listViewScreen(pesan, pesan2)),
+                );
+              }, 
+              child: Text(
+                'List View Screen'
+              ),
+            ),
+          ),
+        ],
       ),
 
+    
       floatingActionButton: FloatingActionButton(
         onPressed: (){},
         child: Icon(
